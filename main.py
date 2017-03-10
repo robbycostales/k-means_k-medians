@@ -1,6 +1,7 @@
 from sklearn import datasets
 import matplotlib.pyplot as plt
 import random
+import numpy as np
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUN PREFERENCES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 show_plot_init = False  # to show initial data plot
@@ -8,6 +9,15 @@ print_x_and_y = False   # print all x's and y's
 show_final_plot = True  # show final plot
 show_convergence = True     # show the updated values for m and b
 print_centers = True        # prints the update of centers
+
+num_clusters = 3     # number of clusters
+max_iter = 10      # maximum iterations
+
+# 1 IS FOR K-MEANS
+# 2 IS FOR K-MEDIANS
+
+#method = 1
+method = 2
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
@@ -49,9 +59,6 @@ points = []
 for i in range(len(x)):
     points.append([x[i], y[i], -1])         # creates list of all points
 
-num_clusters = 5     # number of clusters
-max_iter = 10      # maximum iterations
-
 centers = []
 for i in range(num_clusters):
     a = random.randint(0, len(points) - 1)     # randomize centers
@@ -71,18 +78,35 @@ for i in range(max_iter):
                 shortest_distance = current_distance
                 points[j][2] = k
 
-    # find new ideal center for each cluster
-    for k in range(num_clusters):
-        x_count = 0
-        y_count = 0
-        count = 0
-        for j in range(len(points)):
-            if points[j][2] == k:
-                x_count += points[j][0]
-                y_count += points[j][1]
-                count += 1
-        new_center = [x_count/count, y_count/count]
-        centers[k] = new_center
+    # k-means: find new ideal center for each cluster
+    if method == 1:
+        for k in range(num_clusters):
+            x_count = 0
+            y_count = 0
+            count = 0
+            for j in range(len(points)):
+                if points[j][2] == k:
+                    x_count += points[j][0]
+                    y_count += points[j][1]
+                    count += 1
+            new_center = [x_count/count, y_count/count]
+            centers[k] = new_center
+
+    # k-medians: find new ideal center for each cluster
+    if method == 2:
+        for k in range(num_clusters):
+            x_temp = []
+            y_temp = []
+            count = 0
+            for j in range(len(points)):
+                if points[j][2] == k:
+                    x_temp.append(points[j][0])
+                    y_temp.append(points[j][1])
+                    count += 1
+            new_center = [np.median(x_temp), np.median(y_temp)]
+            centers[k] = new_center
+
+
     if print_centers:
         print(centers)
 
