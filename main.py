@@ -13,22 +13,29 @@ print_centers = True        # prints the update of centers
 num_clusters = 3     # number of clusters
 max_iter = 10      # maximum iterations
 
-# 1 IS FOR K-MEANS
-# 2 IS FOR K-MEDIANS
-
-#method = 1
-method = 2
+k_means = True
+k_medians = False
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 
-def distance(p1, p2):
+def euclidean(p1, p2):
     """
     :param p1: first point in tuple (2D)
     :param p2: second point in tuple (2D)
-    :return: distance between two points
+    :return: euclidean distance between two points
     """
-    d = (((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2))**(1/2)
+    d = (((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2))**2
+    return d
+
+
+def manhattan(p1, p2):
+    """
+    :param p1: first point in tuple (2D)
+    :param p2: second point in tuple (2D)
+    :return: manhattan distance between two points
+    """
+    d = abs(p1[0]-p2[0]) + abs(p1[1]-p2[1])
     return d
 
 
@@ -53,7 +60,7 @@ if show_plot_init:              # shows initial plot of x and y
     plt.plot(x, y, "o")
     plt.show()
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ K-MEANS METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ K_M METHODS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 points = []
 for i in range(len(x)):
@@ -67,19 +74,20 @@ for i in range(num_clusters):
 if print_centers:
     print(centers)
 
-for i in range(max_iter):
 
-    # classify each point into a cluster (0 to num_clusters-1)
-    for j in range(len(points)):       # j for each point
-        shortest_distance = 1000
-        for k in range(num_clusters):      # k for each center
-            current_distance = distance(centers[k], points[j])
-            if current_distance < shortest_distance:
-                shortest_distance = current_distance
-                points[j][2] = k
+if k_means:
+    for i in range(max_iter):
 
-    # k-means: find new ideal center for each cluster
-    if method == 1:
+        # classify each point into a cluster (0 to num_clusters-1)
+        for j in range(len(points)):  # j for each point
+            shortest_distance = -1
+            for k in range(num_clusters):  # k for each center
+                current_distance = euclidean(centers[k], points[j])
+                if current_distance < shortest_distance or shortest_distance == -1:
+                    shortest_distance = current_distance
+                    points[j][2] = k
+
+        # find new ideal center for each cluster
         for k in range(num_clusters):
             x_count = 0
             y_count = 0
@@ -92,8 +100,23 @@ for i in range(max_iter):
             new_center = [x_count/count, y_count/count]
             centers[k] = new_center
 
-    # k-medians: find new ideal center for each cluster
-    if method == 2:
+        if print_centers:
+            print(centers)
+
+
+if k_medians:
+    for i in range(max_iter):
+
+        # classify each point into a cluster (0 to num_clusters-1)
+        for j in range(len(points)):  # j for each point
+            shortest_distance = -1
+            for k in range(num_clusters):  # k for each center
+                current_distance = manhattan(centers[k], points[j])
+                if current_distance < shortest_distance or shortest_distance == -1:
+                    shortest_distance = current_distance
+                    points[j][2] = k
+
+        # find new ideal center for each cluster
         for k in range(num_clusters):
             x_temp = []
             y_temp = []
@@ -106,9 +129,9 @@ for i in range(max_iter):
             new_center = [np.median(x_temp), np.median(y_temp)]
             centers[k] = new_center
 
+        if print_centers:
+            print(centers)
 
-    if print_centers:
-        print(centers)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FINAL PLOTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
