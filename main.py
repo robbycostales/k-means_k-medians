@@ -2,7 +2,8 @@ from sklearn import datasets
 import matplotlib.pyplot as plt
 import random
 import numpy as np
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUN PREFERENCES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ RUN PREF _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
 show_plot_init = False  # to show initial data plot
 print_x_and_y = False   # print all x's and y's
@@ -16,7 +17,7 @@ max_iter = 10      # maximum iterations
 k_means = True
 k_medians = False
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ FUNCTIONS _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
 
 def euclidean(p1, p2):
@@ -39,7 +40,7 @@ def manhattan(p1, p2):
     return d
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DATA PREPARATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ DATA _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
 iris = datasets.load_iris()
 
@@ -60,7 +61,7 @@ if show_plot_init:              # shows initial plot of x and y
     plt.plot(x, y, "o")
     plt.show()
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ K_M METHODS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ K-M METHODS _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
 points = []
 for i in range(len(x)):
@@ -133,7 +134,7 @@ if k_medians:
             print(centers)
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FINAL PLOTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ FINAL PLOTS _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
 colors = ["b", "g", "r", "c", "m", "y"]
 black = "k"
