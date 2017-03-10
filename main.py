@@ -146,14 +146,3 @@ for i in range(len(centers)):
     plt.scatter(x=centers[i][0], y=centers[i][1], color=black)
 
 plt.show()
-
-# k-medians is same but instead of average, use median
-
-# MATPLOTLIB COLORS
-# b : blue.
-# g : green.
-# r : red.
-# c : cyan.
-# m : magenta.
-# y : yellow.
-# k : black.
