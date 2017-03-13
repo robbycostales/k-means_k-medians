@@ -1,3 +1,11 @@
+#
+# Edited version by Amanda
+# 10/10
+#
+
+#
+# Robby, are you not following the homework guidelines in regard to the header?
+#
 from sklearn import datasets
 import matplotlib.pyplot as plt
 import random
@@ -29,7 +37,9 @@ def euclidean(p1, p2):
     d = (((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2))**2
     return d
 
-
+#
+# You researched this, huh?
+#
 def manhattan(p1, p2):
     """
     :param p1: first point in tuple (2D)
@@ -44,6 +54,9 @@ def manhattan(p1, p2):
 
 iris = datasets.load_iris()
 
+#
+# You'll have to explain to me one day why Python programmers are in love with lists... especially when you are doing array operations..
+#
 x = []
 for i in iris.data:     # creates x data
     x.append(i[0])
@@ -104,6 +117,9 @@ if k_means:
         if print_centers:
             print(centers)
 
+#
+# Nice job including K medians and K means in the same file... I'm just wondering where I get to specify?  Shouldn't there be a user interface somewhere?
+#
 
 if k_medians:
     for i in range(max_iter):
@@ -136,6 +152,9 @@ if k_medians:
 
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ FINAL PLOTS _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
+#
+# Your graph is really great!
+#
 colors = ["b", "g", "r", "c", "m", "y"]
 black = "k"
 for i in range(len(points)):
