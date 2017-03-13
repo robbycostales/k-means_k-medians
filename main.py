@@ -3,7 +3,7 @@
 # You forgot WSS, BSS, and TSS
 # How do you know you found the most successful solution?
 # What if your client asked you how accurate your model is?  Are you going to point at the graph?
-# 8.5/10
+# 8/10
 #
 
 #
