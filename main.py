@@ -1,8 +1,17 @@
+#
+# Edited version by Amanda
+# 10/10
+#
+
+#
+# Robby, are you not following the homework guidelines in regard to the header?
+#
 from sklearn import datasets
 import matplotlib.pyplot as plt
 import random
 import numpy as np
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RUN PREFERENCES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ RUN PREF _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
 show_plot_init = False  # to show initial data plot
 print_x_and_y = False   # print all x's and y's
@@ -13,29 +22,41 @@ print_centers = True        # prints the update of centers
 num_clusters = 3     # number of clusters
 max_iter = 10      # maximum iterations
 
-# 1 IS FOR K-MEANS
-# 2 IS FOR K-MEDIANS
+k_means = True
+k_medians = False
 
-#method = 1
-method = 2
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ FUNCTIONS _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
 
-def distance(p1, p2):
+def euclidean(p1, p2):
     """
     :param p1: first point in tuple (2D)
     :param p2: second point in tuple (2D)
-    :return: distance between two points
+    :return: euclidean distance between two points
     """
-    d = (((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2))**(1/2)
+    d = (((p1[0]-p2[0])**2)+((p1[1]-p2[1])**2))**2
+    return d
+
+#
+# You researched this, huh?
+#
+def manhattan(p1, p2):
+    """
+    :param p1: first point in tuple (2D)
+    :param p2: second point in tuple (2D)
+    :return: manhattan distance between two points
+    """
+    d = abs(p1[0]-p2[0]) + abs(p1[1]-p2[1])
     return d
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DATA PREPARATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ DATA _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
 iris = datasets.load_iris()
 
+#
+# You'll have to explain to me one day why Python programmers are in love with lists... especially when you are doing array operations..
+#
 x = []
 for i in iris.data:     # creates x data
     x.append(i[0])
@@ -53,7 +74,7 @@ if show_plot_init:              # shows initial plot of x and y
     plt.plot(x, y, "o")
     plt.show()
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ K-MEANS METHOD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ K-M METHODS _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
 points = []
 for i in range(len(x)):
@@ -67,19 +88,20 @@ for i in range(num_clusters):
 if print_centers:
     print(centers)
 
-for i in range(max_iter):
 
-    # classify each point into a cluster (0 to num_clusters-1)
-    for j in range(len(points)):       # j for each point
-        shortest_distance = 1000
-        for k in range(num_clusters):      # k for each center
-            current_distance = distance(centers[k], points[j])
-            if current_distance < shortest_distance:
-                shortest_distance = current_distance
-                points[j][2] = k
+if k_means:
+    for i in range(max_iter):
 
-    # k-means: find new ideal center for each cluster
-    if method == 1:
+        # classify each point into a cluster (0 to num_clusters-1)
+        for j in range(len(points)):  # j for each point
+            shortest_distance = -1
+            for k in range(num_clusters):  # k for each center
+                current_distance = euclidean(centers[k], points[j])
+                if current_distance < shortest_distance or shortest_distance == -1:
+                    shortest_distance = current_distance
+                    points[j][2] = k
+
+        # find new ideal center for each cluster
         for k in range(num_clusters):
             x_count = 0
             y_count = 0
@@ -92,8 +114,26 @@ for i in range(max_iter):
             new_center = [x_count/count, y_count/count]
             centers[k] = new_center
 
-    # k-medians: find new ideal center for each cluster
-    if method == 2:
+        if print_centers:
+            print(centers)
+
+#
+# Nice job including K medians and K means in the same file... I'm just wondering where I get to specify?  Shouldn't there be a user interface somewhere?
+#
+
+if k_medians:
+    for i in range(max_iter):
+
+        # classify each point into a cluster (0 to num_clusters-1)
+        for j in range(len(points)):  # j for each point
+            shortest_distance = -1
+            for k in range(num_clusters):  # k for each center
+                current_distance = manhattan(centers[k], points[j])
+                if current_distance < shortest_distance or shortest_distance == -1:
+                    shortest_distance = current_distance
+                    points[j][2] = k
+
+        # find new ideal center for each cluster
         for k in range(num_clusters):
             x_temp = []
             y_temp = []
@@ -106,12 +146,15 @@ for i in range(max_iter):
             new_center = [np.median(x_temp), np.median(y_temp)]
             centers[k] = new_center
 
+        if print_centers:
+            print(centers)
 
-    if print_centers:
-        print(centers)
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FINAL PLOTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ FINAL PLOTS _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
+#
+# Your graph is really great!
+#
 colors = ["b", "g", "r", "c", "m", "y"]
 black = "k"
 for i in range(len(points)):
@@ -123,14 +166,3 @@ for i in range(len(centers)):
     plt.scatter(x=centers[i][0], y=centers[i][1], color=black)
 
 plt.show()
-
-# k-medians is same but instead of average, use median
-
-# MATPLOTLIB COLORS
-# b : blue.
-# g : green.
-# r : red.
-# c : cyan.
-# m : magenta.
-# y : yellow.
-# k : black.
