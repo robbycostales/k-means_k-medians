@@ -1,7 +1,19 @@
+# Language: Python 3
+#
+# Authors: Robert Costales
+# Assignment: K-means / K-medians methods
+# Date: 3/10/2017
+#
+# This program can use both the k-means and the k-medians method
+# to group points into clusters.
+
+
 from sklearn import datasets
 import matplotlib.pyplot as plt
 import random
 import numpy as np
+import turtle
+from tkinter import *
 
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ RUN PREF _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
@@ -14,8 +26,33 @@ print_centers = True        # prints the update of centers
 num_clusters = 3     # number of clusters
 max_iter = 10      # maximum iterations
 
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ TEXT BOX _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
+
 k_means = False
-k_medians = True
+k_medians = False
+master = Tk()
+master.title("MODE")
+master.geometry("200x100")
+t = Label(master, text="Type  '0'  for  k-means  method,\n '1'  for  k-medians  (default)")
+t.pack()
+e = Entry(master, width=20)
+e.delete(0)
+e.insert(0, "enter text here")
+e.pack()
+mode = 3
+def callback():
+    global mode
+    mode = e.get()
+    master.destroy()
+b = Button(master, text="submit", width=20, command=callback)
+b.pack()
+master.mainloop()
+
+if int(mode) == 0:
+    k_means = True
+else:
+    k_medians = True
+
 
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ FUNCTIONS _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
 
@@ -78,8 +115,8 @@ if print_centers:
 
 
 if k_means:
+    print("k-means")
     for i in range(max_iter):
-
         # classify each point into a cluster (0 to num_clusters-1)
         for j in range(len(points)):  # j for each point
             shortest_distance = -1
@@ -107,6 +144,7 @@ if k_means:
 
 
 if k_medians:
+    print("k-medians")
     for i in range(max_iter):
 
         # classify each point into a cluster (0 to num_clusters-1)

@@ -1,25 +1,30 @@
 # Edited version by Amanda
 # You forgot WSS, BSS, and TSS
-# How do you know you found the most successful solution?
-# What if your client asked you how accurate your model is?  Are you going to point at the graph?
-# 8/10
-#
+NEED
 
-#
+# How do you know you found the most successful solution?
+NEED
+
+# What if your client asked you how accurate your model is?  Are you going to point at the graph?
+NEED
+
+# 8/10
+RESOLVED
+
 # Robby, are you not following the homework guidelines in regard to the header?
+NEED
 
 # RE: Initialization of lists x, y
 # You'll have to explain to me one day why Python programmers are in love with lists... especially when you are doing array operations..
-#
+RESOLVED
 
 # RE: Manhattan
 # You researched this, huh?
-#
+RESOLVED
 
-#
 # Nice job including K medians and K means in the same file... I'm just wondering where I get to specify?  Shouldn't there be a user interface somewhere?
-#
+RESOLVED
 
-#
+
 # Your graph is really great!
-#
+RESOLVED
