@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="875a8c02-d511-437d-ae59-fa0045b52b7d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/edits.txt" afterPath="$PROJECT_DIR$/edits.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
     </list>
     <ignored path="k-means_and_k-median.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,7 +32,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="154">
@@ -45,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edits.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="edits.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/edits.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="154">
+              <caret line="7" column="89" selection-start-line="7" selection-start-column="87" selection-end-line="7" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -64,8 +63,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/edits.txt" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/edits.txt" />
       </list>
     </option>
   </component>
@@ -543,14 +542,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edits.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -566,6 +557,14 @@
           <folding>
             <element signature="e#212#240#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edits.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="89" selection-start-line="7" selection-start-column="87" selection-end-line="7" selection-end-column="89" />
+          <folding />
         </state>
       </provider>
     </entry>
