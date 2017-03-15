@@ -110,13 +110,14 @@ for i in range(num_clusters):
     a = random.randint(0, len(points) - 1)     # randomize centers
     centers.append(points[a][0:2])
 
-if print_centers:
-    print(centers)
-
-
+prev_centers = [0]
 if k_means:
-    print("k-means")
-    for i in range(max_iter):
+    print("K MEANS:\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_\n")
+    while centers[:] != prev_centers[:]:       # checks to see if any centers changed
+        for i in centers:
+            print("[{0:.2f}, {1:.2f}]".format(i[0], i[1]), end=" ")
+        print("")
+        prev_centers = centers[:]
         # classify each point into a cluster (0 to num_clusters-1)
         for j in range(len(points)):  # j for each point
             shortest_distance = -1
@@ -139,14 +140,14 @@ if k_means:
             new_center = [x_count/count, y_count/count]
             centers[k] = new_center
 
-        if print_centers:
-            print(centers)
-
 
 if k_medians:
-    print("k-medians")
-    for i in range(max_iter):
-
+    print("K MEDIANS:\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_\n")
+    while centers[:] != prev_centers[:]:       # checks to see if any centers changed
+        for i in centers:
+            print("[{0:.2f}, {1:.2f}]".format(i[0], i[1]), end=" ")
+        print("")
+        prev_centers = centers[:]
         # classify each point into a cluster (0 to num_clusters-1)
         for j in range(len(points)):  # j for each point
             shortest_distance = -1
@@ -168,9 +169,6 @@ if k_medians:
                     count += 1
             new_center = [np.median(x_temp), np.median(y_temp)]
             centers[k] = new_center
-
-        if print_centers:
-            print(centers)
 
 
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ FINAL PLOTS _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- #
