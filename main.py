@@ -7,7 +7,7 @@
 # This program can use both the k-means and the k-medians method
 # to group points into clusters.
 
-
+#testing 1, 2, 3
 from sklearn import datasets
 import matplotlib.pyplot as plt
 import random
