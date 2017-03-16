@@ -1,12 +1,12 @@
 # Edited version by Amanda
 # You forgot WSS, BSS, and TSS
-NEED
+RESOLVED
 
 # How do you know you found the most successful solution?
-NEED
+WILL ASK
 
 # What if your client asked you how accurate your model is?  Are you going to point at the graph?
-NEED
+RESOLVED
 
 # 8/10
 RESOLVED
